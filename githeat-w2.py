@@ -47,32 +47,32 @@ def main():
     input_path = input()
     if input_path =='.':
         input_path = os.path.realpath('.')
-        get_all_sub_size(input_path)
-        while choice:
-            print("Enter  \n0.To end \n1.To navigate to parent folder \n2.To navigate to child folder \n3.To remove a directory or file from the present directory")
-            choice = int(input())
-            if choice == 0:
-                break
-            elif choice == 1:
-                input_path = os.path.dirname(input_path)
-                get_all_sub_size(input_path)
-            elif choice == 2:
-                print("Enter index of child directory")
-                child_dir_key = int(input())
-                child_dir = output_dictionary[child_dir_key]
-                input_path = os.path.join(input_path, child_dir)
-                get_all_sub_size(input_path)
-            elif choice == 3:
-                print("Enter index of filename or sub-directory to be deleted")
-                file_del_key = int(input())
-                file_del = output_dictionary[file_del_key]
-                if os.path.isdir(os.path.join(input_path, file_del)):
-                    shutil.rmtree(os.path.join(input_path, file_del))
-                else:
-                    os.remove(os.path.join(input_path, file_del))
-                get_all_sub_size(input_path)
+    get_all_sub_size(input_path)
+    while choice:
+        print("Enter  \n0.To end \n1.To navigate to parent folder \n2.To navigate to child folder \n3.To remove a directory or file from the present directory")
+        choice = int(input())
+        if choice == 0:
+            break
+        elif choice == 1:
+            input_path = os.path.dirname(input_path)
+            get_all_sub_size(input_path)
+        elif choice == 2:
+            print("Enter index of child directory")
+            child_dir_key = int(input())
+            child_dir = output_dictionary[child_dir_key]
+            input_path = os.path.join(input_path, child_dir)
+            get_all_sub_size(input_path)
+        elif choice == 3:
+            print("Enter index of filename or sub-directory to be deleted")
+            file_del_key = int(input())
+            file_del = output_dictionary[file_del_key]
+            if os.path.isdir(os.path.join(input_path, file_del)):
+                shutil.rmtree(os.path.join(input_path, file_del))
             else:
-                print("Wrong choice")
+                os.remove(os.path.join(input_path, file_del))
+            get_all_sub_size(input_path)
+        else:
+            print("Wrong choice")
 
 if __name__== "__main__":
     main()
