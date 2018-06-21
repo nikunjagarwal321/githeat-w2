@@ -61,7 +61,11 @@ def main():
             child_dir_key = int(input())
             child_dir = output_dictionary[child_dir_key]
             input_path = os.path.join(input_path, child_dir)
-            get_all_sub_size(input_path)
+            if os.path.isdir(input_path):
+                get_all_sub_size(input_path)
+            else :
+                input_path = os.path.dirname(input_path)
+                print("Wrong choice. Not a Directory.")
         elif choice == 3:
             print("Enter index of filename or sub-directory to be deleted")
             file_del_key = int(input())
